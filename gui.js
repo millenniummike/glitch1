@@ -37,30 +37,6 @@ function createGui(){
             });
             panel.addControl(picker)
 
-            var slider = createSlider();
-            slider.onValueChangedObservable.add(function (value) {
-                if (lastSelectedMesh != null) {
-                    lastSelectedMesh.scaling.x = value
-                }
-            });
-            panel.addControl(slider);
-
-            var slider2 = createSlider();
-            slider2.onValueChangedObservable.add(function (value) {
-                if (lastSelectedMesh != null) {
-                    lastSelectedMesh.scaling.y = value
-                }
-            });
-            panel.addControl(slider2);
-
-            var slider3 = createSlider();
-            slider3.onValueChangedObservable.add(function (value) {
-                if (lastSelectedMesh != null) {
-                    lastSelectedMesh.scaling.z = value
-                }
-            });
-            panel.addControl(slider3);
-
             var label = new BABYLON.GUI.TextBlock();
             label.text = "Use snapping";
             label.width = "140px";
@@ -107,44 +83,84 @@ function createGui(){
           */
           
           // Create the 3D UI manager
-            var anchor = new BABYLON.TransformNode("");
-            var manager = new BABYLON.GUI.GUI3DManager(scene);
+  
+            var anchor1 = new BABYLON.TransformNode("");
+            var manager1 = new BABYLON.GUI.GUI3DManager(scene);
+
+            var panel1 = new BABYLON.GUI.PlanePanel();
+            anchor1.width="300px"
+            anchor1.parent = rootGUI;
+            manager1.addControl(panel1);
+            panel1.margin = 0.01;
+            panel1.columns = 2;
+            panel1.linkToTransformNode(anchor1);
+            panel1.position.y = 0.4;
+            panel1.position.x = 0.2;
+            panel1.scaling.x = 0.05
+            panel1.scaling.y = 0.05;
+            panel1.scaling.z = 0.05;
+  
+            var anchor2 = new BABYLON.TransformNode("");
+            var manager2 = new BABYLON.GUI.GUI3DManager(scene);
 
             var panel2 = new BABYLON.GUI.PlanePanel();
-            anchor.width="300px"
-            anchor.parent = rootGUI;
-            manager.addControl(panel2);
+            anchor2.width="300px"
+            anchor2.parent = rootGUI;
+            manager2.addControl(panel2);
             panel2.margin = 0.01;
-          
             panel2.columns = 3;
+            panel2.linkToTransformNode(anchor2);
+            panel2.position.y = 0.4;
+            panel2.position.x = 0.35;
+            panel2.scaling.x = 0.05
+            panel2.scaling.y = 0.05;
+            panel2.scaling.z = 0.05;
 
-            panel2.linkToTransformNode(anchor);
-            panel2.position.y = 0.2;
-            panel2.scaling.x = 0.1;
-            panel2.scaling.y = 0.1;
-            panel2.scaling.z = 0.1;
-
-            var addButton = function(text,index) {
-                var button = new BABYLON.GUI.HolographicButton("orientation");
-                panel2.addControl(button);
-                button.text = text
+            var addButton = function(name,index,panel,fontsize=80) {
+                var button = new BABYLON.GUI.Button3D("orientation");
+                panel.addControl(button);
+                var text = new BABYLON.GUI.TextBlock();
+                text.text = name;
+                text.color = "white";
+                text.fontSize = fontsize;
+                button.content = text
                 button.onPointerClickObservable.add(function () {
                   buttonAction(index)
                 })
             }
+            
+            var buttons1 = [
+              {name:"M1"},
+              {name:"M2"},
+              {name:"M3"},
+              {name:"M4"},
+              {name:"M5"},
+              {name:"M6"},
+              {name:"M7"},
+              {name:"M8"}
+                          ]
+            
+            panel1.blockLayout = true;
+            for (var index = 0; index < buttons1.length; index++) {
+                addButton(buttons1[index].name,index,panel1);    
+            }
+            panel1.blockLayout = false;
 
-            var buttons = [
+            var buttons2 = [
               {name:"Duplicate"},
               {name:"Cube"},
               {name:"Sphere"},
               {name:"Plane"},
               {name:"Rectangle"},
               {name:"Delete"},
+              {name:"?"},
+              {name:"?"},
+              {name:"?"},
                           ]
             
             panel2.blockLayout = true;
-            for (var index = 0; index < buttons.length; index++) {
-                addButton(buttons[index].name,index);    
+            for (var index = 0; index < buttons2.length; index++) {
+                addButton(buttons2[index].name,index,panel2,40);    
             }
             panel2.blockLayout = false;
   }
