@@ -1,3 +1,11 @@
+var vrControllerState = {};
+vrControllerState.lastLeftPosition = new BABYLON.Vector3(0, 0, 0)
+vrControllerState.lastRighPosition = new BABYLON.Vector3(0, 0, 0)
+vrControllerState.onSecondaryLeftButtonPressed
+vrControllerState.onSecondaryRightButtonPressed = false
+vrControllerState.onSecondaryLeftButtonPressed = false
+vrControllerState.scaling = false
+
 var VRHelper = scene.createDefaultVRExperience();
             VRHelper.enableInteractions();
             VRHelper.enableTeleportation({
@@ -75,10 +83,10 @@ var VRHelper = scene.createDefaultVRExperience();
                                 console.log(hitInfo[0].pickedMesh.name);
                                 selectedMesh = hitInfo[0].pickedMesh
                                 lastSelectedMesh = selectedMesh;
-                                slider.value = selectedMesh.scaling.x
-                                slider2.value = selectedMesh.scaling.y
-                                slider3.value = selectedMesh.scaling.z
-                                picker.value = selectedMesh.material.diffuseColor
+                                //slider.value = selectedMesh.scaling.x
+                                //slider2.value = selectedMesh.scaling.y
+                               // slider3.value = selectedMesh.scaling.z
+                                //picker.value = selectedMesh.material.diffuseColor
 
                                 webVRController.mesh.addChild(selectedMesh);
 
@@ -112,10 +120,10 @@ var VRHelper = scene.createDefaultVRExperience();
                                 console.log(hitInfo[0].pickedMesh.name);
                                 selectedMesh = hitInfo[0].pickedMesh
                                 lastSelectedMesh = selectedMesh;
-                                slider.value = selectedMesh.scaling.x
-                                slider2.value = selectedMesh.scaling.y
-                                slider3.value = selectedMesh.scaling.z
-                                picker.value = selectedMesh.material.diffuseColor
+                                //slider.value = selectedMesh.scaling.x
+                                //slider2.value = selectedMesh.scaling.y
+                                //slider3.value = selectedMesh.scaling.z
+                                //picker.value = selectedMesh.material.diffuseColor
                                 webVRController.mesh.addChild(selectedMesh);
                             }
                             //ungrab   
