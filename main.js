@@ -1,10 +1,11 @@
 //Global variables
+
 var canvas = document.getElementById("renderCanvas"); // Get the canvas element 
 var engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
 var editableMeshes = [];
 var snap = true;
 var snapSize = 0.2;
-const thirdView = false;
+const thirdView = false
 var lastSelectedMesh;
 var selectedMesh;
 
@@ -47,7 +48,7 @@ var createScene = function () {
         };
 
 // Button Logic
-function buttonAction(type) {
+function actionHandler(type) {
                 if (type == 0) {
                     if (lastSelectedMesh) {
                         var obj = lastSelectedMesh.clone('cloned');
@@ -107,6 +108,10 @@ function buttonAction(type) {
                     obj.material = new BABYLON.StandardMaterial("cubeMat", scene);
                     obj.tag = 'selectable';
                     editableMeshes.push(obj);
+                }
+  
+                if (type > 1000) {
+                    console.log("MENU")
                 }
             }
 

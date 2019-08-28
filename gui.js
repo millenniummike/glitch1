@@ -11,7 +11,7 @@ function createGui(){
             }
 
             guiPanel.parent = rootGUI;
-            guiPanel.position.y += 0.4;
+            guiPanel.position.y += 0.5;
 
             var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(guiPanel);
             var panel = new BABYLON.GUI.StackPanel();
@@ -64,25 +64,57 @@ function createGui(){
             debugText.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
             debugText.color = "white";
             panel.addControl(debugText);
-
-          /*
-            var input = new BABYLON.GUI.InputText();
-            input.width = 0.2;
-            input.maxWidth = 0.2;
-            input.height = "40px";
-            input.text = "Click here to start typing!";
-            input.color = "white";
-            input.background = "green";
-            panel.addControl(input);
-
+  
             var keyboard = BABYLON.GUI.VirtualKeyboard.CreateDefaultLayout();
             keyboard.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
             panel.addControl(keyboard);
 
-            keyboard.connect(input);
-          */
+          var addInput = function(name) {
+                var input = new BABYLON.GUI.InputText();
+                input.width = 0.1;
+                input.maxWidth = 0.1;
+                input.height = "40px";
+                input.text = "0";
+                input.color = "white";
+                input.background = "green";
+                input.name = name;
+                panel.addControl(input);
+                input.onTextChangedObservable.add(function (value) {
+                    console.log(value)
+                    if (lastSelectedMesh != null) {
+                      switch (name) {
+                        case 'rotationX':
+                          lastSelectedMesh.rotation.x = value.text
+                        break;
+                          case 'rotationY':
+                          lastSelectedMesh.rotation.y = value.text
+                        break;
+                          case 'rotationZ':
+                          lastSelectedMesh.rotation.z = value.text
+                        break;
+                          case 'scaleX':
+                          lastSelectedMesh.scaling.x = value.text
+                        break;
+                          case 'scaleY':
+                          lastSelectedMesh.scaling.y = value.text
+                        break;
+                          case 'scaleZ':
+                          lastSelectedMesh.scaling.z = value.text
+                        break;
+                      } 
+                  }
+                })
+                keyboard.connect(input);
+            }
           
-          // Create the 3D UI manager
+            addInput('rotationX')
+            addInput('rotationY')
+            addInput('rotationZ')
+            addInput('scaleX')
+            addInput('scaleY')
+            addInput('scaleZ')
+          
+            // Create the 3D UI manager
   
             var anchor1 = new BABYLON.TransformNode("");
             var manager1 = new BABYLON.GUI.GUI3DManager(scene);
@@ -94,7 +126,7 @@ function createGui(){
             panel1.margin = 0.01;
             panel1.columns = 2;
             panel1.linkToTransformNode(anchor1);
-            panel1.position.y = 0.4;
+            panel1.position.y = 0.6;
             panel1.position.x = 0.2;
             panel1.scaling.x = 0.05
             panel1.scaling.y = 0.05;
@@ -110,7 +142,7 @@ function createGui(){
             panel2.margin = 0.01;
             panel2.columns = 3;
             panel2.linkToTransformNode(anchor2);
-            panel2.position.y = 0.4;
+            panel2.position.y = 0.6;
             panel2.position.x = 0.35;
             panel2.scaling.x = 0.05
             panel2.scaling.y = 0.05;
@@ -125,7 +157,8 @@ function createGui(){
                 text.fontSize = fontsize;
                 button.content = text
                 button.onPointerClickObservable.add(function () {
-                  buttonAction(index)
+                  store.dispatch({ type: 'ButtonClick','data':{buttonName:name}})
+                  actionHandler(index)
                 })
             }
             
@@ -142,7 +175,7 @@ function createGui(){
             
             panel1.blockLayout = true;
             for (var index = 0; index < buttons1.length; index++) {
-                addButton(buttons1[index].name,index,panel1);    
+                addButton(buttons1[index].name,1000+index,panel1);    
             }
             panel1.blockLayout = false;
 

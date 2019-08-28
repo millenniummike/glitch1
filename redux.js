@@ -1,4 +1,3 @@
-
 const { createStore } = 'Redux';
 function reducer(state, action) {
         if (typeof state === 'undefined') {
@@ -12,6 +11,8 @@ function reducer(state, action) {
             return {...state, "VRControllerLeftPosition":action.data}
           case 'VRControllerRightPosition':
             return {...state, "VRControllerRightPosition":action.data}
+          case 'ButtonClick':
+            return {...state, "ButtonClick":action.data}
           default:
             return state
         }
@@ -25,7 +26,10 @@ function render() {
 render()
 store.subscribe(render)
 
+/*
 store.dispatch({ type: 'VRControllerLeftPosition',
                 'data':{x:3,y:4,z:5}})
 store.dispatch({ type: 'VRControllerRightPosition',
                 'data':{x:3,y:4,z:5}})
+*/
+

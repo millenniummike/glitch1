@@ -7,8 +7,8 @@ vrControllerState.onSecondaryLeftButtonPressed = false
 vrControllerState.scaling = false
 
 var VRHelper = scene.createDefaultVRExperience();
-            VRHelper.enableInteractions();
-            VRHelper.enableTeleportation({
+VRHelper.enableInteractions();
+VRHelper.enableTeleportation({
                 floorMeshName: "ground1"
             });
 
@@ -146,4 +146,6 @@ var VRHelper = scene.createDefaultVRExperience();
                     }
 
                 });
-            });
+
+            }
+            );   
