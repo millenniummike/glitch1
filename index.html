@@ -24,19 +24,27 @@
 
   <script src="https://preview.babylonjs.com/babylon.js"></script>
   <script src="https://preview.babylonjs.com/gui/babylon.gui.min.js"></script>
+  <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.4/redux.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/earcut@2.1.5/dist/earcut.min.js"></script>
 
-
+  <script defer src="init.js"></script>
   <script defer src="redux.js"></script>
-  <script defer src="gui.js"></script>
+  <script defer src="setupGUI.js"></script>
+  <script defer src="setupVR.js"></script>
+  <script defer src="meshMaker.js"></script>
+  
   <script defer src="main.js"></script>
-  <script defer src="vrsetup.js"></script>
-  <script type="module" defer src="moduletest.js"></script>
+
+  <script src="three.min.js"></script>
+  <script src="jsmodeler.js"></script>
+  <script src="jsmodeler.ext.three.js"></script>
+  
+  <script src="//cdn.jsdelivr.net/npm/eruda"></script>
+  <script>eruda.init();</script>
   
 </head>
-
 <body>
-    <canvas id="renderCanvas" touch-action="none"></canvas> //touch-action="none" for best results from PEP
+  <canvas id="renderCanvas" touch-action="none"></canvas> //touch-action="none" for best results from PEP
 </body>
 </html>
