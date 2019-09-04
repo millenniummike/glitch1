@@ -56,17 +56,16 @@ function setupVR(){
               if (stateObject.value > 0.5) {
                   var hitInfo = ray.intersectsMeshes(editableMeshes);
                   if (hitInfo.length) {
-                      console.log(hitInfo[0].pickedMesh.name);
+                      //console.log(hitInfo[0].pickedMesh.name);
                       selectedMesh = hitInfo[0].pickedMesh
-                      lastSelectedMesh = selectedMesh;
+                      //lastSelectedMesh = selectedMesh;
                       store.dispatch(selectMesh(selectedMesh))
-
-                    webVRController.mesh.addChild(selectedMesh);
-
+                      webVRController.mesh.addChild(selectedMesh);
                   }
                   //ungrab   
               } else {
                   if (selectedMesh) {
+                    // move to redux
                       if (snap) {
                           var diff = selectedMesh.position;
                           diff = new BABYLON.Vector3(nearest(selectedMesh.position.x, snapSize), nearest(selectedMesh.position.y, snapSize), nearest(selectedMesh.position.z, snapSize));
