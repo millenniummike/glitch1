@@ -20,6 +20,23 @@ function reducer(state, action) {
             return {...state, "inputText":action.inputText}
           case 'MENU_BUTTON':
             return {...state, "buttonName":action.buttonName}
+          case 'TEXT_UPDATE':
+            switch (action.textInputName) {
+              case 'rotationX':
+                return {...state, "rotationX":action.textValue}
+              case 'rotationY':
+                return {...state, "rotationY":action.textValue}
+              case 'rotationZ':
+                return {...state, "rotationZ":action.textValue}
+              case 'scaleX':
+                return {...state, "scaleX":action.textValue}
+              case 'scaleY':
+                return {...state, "scaleY":action.textValue}
+              case 'scaleZ':
+                return {...state, "scaleZ":action.textValue}
+              default:
+                return state
+              }
           case 'SELECT_COLOR':
             return {...state, "colorR":""+action.color.r,"colorG":""+action.color.g,"colorB":""+action.color.b,"color":action.color}
           default:

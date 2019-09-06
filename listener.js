@@ -17,11 +17,25 @@ console.log(nextState)
   if (selectedMesh != "") {
     console.log("selected mesh "+selectedMesh.name)
     lastSelectedMesh = selectedMesh
+    inputScaleX.text=''+selectedMesh.scaling.x
+    inputScaleY.text=''+selectedMesh.scaling.y
+    inputScaleZ.text=''+selectedMesh.scaling.z
+    inputRotationX.text=''+selectedMesh.rotation.x
+    inputRotationY.text=''+selectedMesh.rotation.y
+    inputRotationZ.text=''+selectedMesh.rotation.z
   }
   
  for (var key in currentState) {
   if (currentState[key] !== nextState[key]) {
     if (key == "buttonName") {buttonName = nextState[key]}
+    if (selectedMesh && nextState[key]) {
+      if (key == "scaleX") { selectedMesh.scaling.x=nextState[key]; inputScaleX.text=''+nextState[key]}
+      if (key == "scaleY") { selectedMesh.scaling.y=nextState[key]; inputScaleY.text=''+nextState[key]}
+      if (key == "scaleZ") { selectedMesh.scaling.z=nextState[key]; inputScaleZ.text=''+nextState[key]}
+      if (key == "rotationX") { selectedMesh.rotation.x=nextState[key]; inputRotationX.text=''+nextState[key]}
+      if (key == "rotationY") { selectedMesh.rotation.y=nextState[key]; inputRotationY.text=''+nextState[key]}
+      if (key == "rotationZ") { selectedMesh.rotation.z=nextState[key]; inputRotationZ.text=''+nextState[key]}
+    }
   }
 }
   
@@ -73,32 +87,7 @@ console.log(nextState)
       }
     }
   }
-  
-                    /*
-                    if (lastSelectedMesh != null) {
-                      switch (name) {
-                        case 'rotationX':
-                          lastSelectedMesh.rotation.x = value.text
-                        break;
-                          case 'rotationY':
-                          lastSelectedMesh.rotation.y = value.text
-                        break;
-                          case 'rotationZ':
-                          lastSelectedMesh.rotation.z = value.text
-                        break;
-                          case 'scaleX':
-                          lastSelectedMesh.scaling.x = value.text
-                        break;
-                          case 'scaleY':
-                          lastSelectedMesh.scaling.y = value.text
-                        break;
-                          case 'scaleZ':
-                          lastSelectedMesh.scaling.z = value.text
-                        break;
-                      } 
-                  }
-                })
-    */
+
   
   
   /*

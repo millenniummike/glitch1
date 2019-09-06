@@ -42,7 +42,7 @@ function setupDetailPanel2(){
                 panel.addControl(input, 2, 0);
 
                 input.onTextChangedObservable.add(function (value){
-                  store.dispatch({ type: 'TEXT_UPDATE',textInputName:name, textValue:value.text})
+                  store.dispatch({ type:'TEXT_UPDATE', textInputName:name, textValue:value.text})
                 })
               		var keyboard = BABYLON.GUI.VirtualKeyboard.CreateDefaultLayout();
                   keyboard.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
