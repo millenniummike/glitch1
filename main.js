@@ -1,10 +1,10 @@
 var createScene = function () {
             var light = new BABYLON.PointLight("Omni", new BABYLON.Vector3(0, 6, 0), scene).intensity = 0.3;
-            createGround();
+            //createGround();
             createMovableMeshes();
             setupGUI();
             setupVR();
-            loadMesh();
+            //loadMesh();
         };
 
 function createGround() {
@@ -22,17 +22,12 @@ function createMovableMeshes() {
                 editableMeshes.push(new BABYLON.Mesh.CreateBox("cube" + i, 2, scene));
                 editableMeshes[i].position.y = 1;
                 editableMeshes[i].material = new BABYLON.StandardMaterial("cubeMat", scene);
-                //editableMeshes[i].tag = 'selectable';
             }
             editableMeshes[0].position.z = 8;
             editableMeshes[0].position.y = 3;
             editableMeshes[1].position.x = 8;
             editableMeshes[2].position.x = -8;
             editableMeshes[3].position.z = -8;
-
-            lastSelectedMesh = editableMeshes[0]
-            store.dispatch(selectMesh(lastSelectedMesh))
-            //store.dispatch(selectMesh(null))
         };
 
 function nearest(number, n) {
@@ -41,6 +36,10 @@ function nearest(number, n) {
 
 // LAUNCH
 createScene();
+VRHelper.currentVRCamera.position.z=-1.5
+VRHelper.currentVRCamera.position.y=0
+
+store.dispatch({ type: 'MENU_BUTTON',buttonName:"M6"})
 //scene.debugLayer.show();
 
 engine.runRenderLoop(function () {
